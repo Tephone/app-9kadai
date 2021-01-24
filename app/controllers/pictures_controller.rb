@@ -16,6 +16,11 @@ class PicturesController < ApplicationController
   def new
     @picture = Picture.new
   end
+  def confirm
+    @picture = Picture.new(picture_params)
+    @picture.user_id = current_user.id
+    #render :new if @blog.invalid?
+  end
 
   # GET /pictures/1/edit
   def edit
@@ -27,29 +32,37 @@ class PicturesController < ApplicationController
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
 
-    respond_to do |format|
-      if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render :show, status: :created, location: @picture }
+    #respond_to do |format|
+      if params[:back]
+        render :new
       else
-        format.html { render :new }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+        if @picture.save
+          #format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
+          redirect_to pictures_path, notice: 'Picture was successfully created.'
+          #format.json { render :show, status: :created, location: @picture }
+        else
+          render :new
+          #format.html { render :new }
+          #format.json { render json: @picture.errors, status: :unprocessable_entity }
+        end
       end
-    end
+    
   end
 
   # PATCH/PUT /pictures/1
   # PATCH/PUT /pictures/1.json
   def update
-    respond_to do |format|
+    #respond_to do |format|
       if @picture.update(picture_params)
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
-        format.json { render :show, status: :ok, location: @picture }
+        redirect_to pictures_path, notice: 'Picture was successfully updated.'
+        #format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
+        #format.json { render :show, status: :ok, location: @picture }
       else
-        format.html { render :edit }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+        #format.html { render :edit }
+        render :edit
+        #format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
-    end
+    #end
   end
 
   # DELETE /pictures/1

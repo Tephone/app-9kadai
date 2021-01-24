@@ -1,0 +1,10 @@
+<%= form_with(model: @picture, local: true, url: pictures_path) do |form|%>
+    <%= form.hidden_field :content%>
+    <%= form.hidden_field :image%>
+    <%= form.hidden_field :image_cache%>
+    <%= form.hidden_field :user_id%>
+    <p>content<%= @picture.content%></p>
+    <p>image<%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %></p> 
+    <%= form.submit "submit"%>
+    <%= form.submit "back", name: 'back' %>
+<% end %>
