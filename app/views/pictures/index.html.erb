@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Pictures</h1>
-
+<br>
+<div class="btn btn-facebook"><i class="fa fa-facebook"></i> <%= link_to('| Post', new_picture_path, class: 'hello_book') %></div>
+<br><br>
+<!--
 <table>
   <thead>
     <tr>
@@ -13,19 +14,19 @@
   </thead>
 
   <tbody>
+-->
     <% @pictures.each do |picture| %>
-      <tr>
-        <td><%= picture.content %></td>
-        <td><%= image_tag(picture.image.url) if picture.image && picture.image.url %></td>
-        <td><%= picture.user.name %></td>
-        <td><%= link_to 'Show', picture %></td>
-        <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-        <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <p class = "style1"></p>
+        <p>user: <%= picture.user.name %></p><br>
+        <%= picture.content %><br>
+        <%= image_tag(picture.image.url, class: "images") if picture.image && picture.image.url %><br><br>
+        <%= link_to('Show', picture, class:"btn btn-default") %>
+        <%= link_to('Edit', edit_picture_path(picture), class:"btn btn-default") %></td>
+        <%= link_to('Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default") %></td><br><br>
     <% end %>
+<!--
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Picture', new_picture_path %>
+-->
+<div class="btn btn-facebook"><i class="fa fa-facebook"></i> <%= link_to('| Post', new_picture_path, class: 'hello_book') %></div>
+<!--<button class="btn btn-facebook"><i class="fa fa-facebook"></i> | Connect with Facebook</button>-->
