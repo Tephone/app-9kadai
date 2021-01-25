@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-
+ 
   # GET /pictures
   # GET /pictures.json
   def index
@@ -21,7 +21,6 @@ class PicturesController < ApplicationController
     @picture.user_id = current_user.id
     #render :new if @blog.invalid?
   end
-
   # GET /pictures/1/edit
   def edit
   end
@@ -31,7 +30,6 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
-
     #respond_to do |format|
       if params[:back]
         render :new
@@ -46,7 +44,7 @@ class PicturesController < ApplicationController
           #format.json { render json: @picture.errors, status: :unprocessable_entity }
         end
       end
-    
+    #end
   end
 
   # PATCH/PUT /pictures/1
